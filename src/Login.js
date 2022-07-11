@@ -5,6 +5,8 @@ import { StyleSheet, Text, View, Linking, TouchableOpacity, Alert, Platform, But
 import 'react-native-gesture-handler';
 import { TextInput } from 'react-native-gesture-handler';
 import { auth } from './Firebase';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from "firebase/auth";
+
 import { InputValidation } from './InputValidation';
 
 // MAKE FIREBASE ERRORS MODULE TO INCLUDE/DEAL WITH ALL/MOST OF THE ERRORS
@@ -30,7 +32,7 @@ export const Login = ({ navigation }) => {
 
 
     useEffect(() => {
-        const unsub = auth.onAuthStateChanged(user => {
+        const unsub = onAuthStateChanged(auth, user => {
             if (user) {
                 navigation.replace("MainAppContainter");
             }
@@ -54,7 +56,7 @@ export const Login = ({ navigation }) => {
                         onPress: () => {
                             // Reset password function
                             console.log("Password need reset")
-                            auth.sendPasswordResetEmail(Email)
+                            sendPasswordResetEmail(auth, Email)
                             setUserEmailConfirm(true)
                         }
 
@@ -82,8 +84,7 @@ export const Login = ({ navigation }) => {
         console.log("Loginentereddd")
         if (err.code == "auth/email-already-in-use") {
 
-            auth
-                .signInWithEmailAndPassword(Email, Pass)
+                signInWithEmailAndPassword(auth, Email, Pass)
                 .then(userCredentials => {
                     const user = userCredentials.user;
                     console.log('Login Done', user.email)
@@ -102,8 +103,8 @@ export const Login = ({ navigation }) => {
     const handleSignUp = (Email_, Pass_) => {
         console.log("Signup pass");
 
-        auth
-            .createUserWithEmailAndPassword(Email_, Pass_)
+        
+            createUserWithEmailAndPassword(auth, Email_, Pass_)
             .then(userCredentials => {
                 const user = userCredentials.user;
                 console.log('Sign up Done', user.email)

@@ -6,16 +6,15 @@ import { StyleSheet, Text, View, Linking, TouchableOpacity, Alert, Platform, But
 import 'react-native-gesture-handler';
 import { NotificationsScreen } from './NotificationsScreen';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { auth, db, firebase } from './Firebase';
+import { auth, db } from './Firebase';
+import { signOut } from 'firebase/auth';
 
 
 export function SettingsScreen({navigation}) {
 
     const handleSignOut = () => {
 
-
-        auth
-            .signOut()
+            signOut(auth)
             .then(() => {
                 navigation.replace('LoginContainer')
             })

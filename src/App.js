@@ -35,6 +35,7 @@ export default function App() {
           drawerActiveTintColor: '#009874',
           drawerInactiveTintColor: '#fff',
           headerShadowVisible: false,
+          headerShown: false,
         }}>
         <Stack.Screen name="Login" component={Login} options={styles.loginOP} />
         <Stack.Screen name="whoTeam" component={NotificationsScreen} options={styles.stackWhoTeamOP} />
@@ -54,6 +55,7 @@ export default function App() {
           drawerType: 'back',
           swipeEdgeWidth: Dimensions.width / 4.5,
           headerStyle: { backgroundColor: '#12181f' },
+          headerTintColor: '#fff',
           drawerActiveTintColor: '#009874',
           drawerInactiveTintColor: '#fff',
           headerShadowVisible: false,
@@ -101,7 +103,7 @@ const styles = StyleSheet.create({
 
   mainstyle: {
     title: 'Welcome to the Quad',
-    headerStyle: { backgroundColor: "#12181f" },
+    headerStyle: { backgroundColor: "#12181f", },
     headerTintColor: "#fff",
     headerTitleAlign: 'center',
     headerPressColor: 'red',

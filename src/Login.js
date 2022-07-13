@@ -185,14 +185,16 @@ export const Login = ({ navigation }) => {
         >
             <View>
                 <Image
-                    source={require('./quad-dark.jpg')}
+                    source={require('./logob.png')}//{require('./quad-dark.jpg')}
                     style={{
                         width: 250,
                         height: 100,
                         position: "relative",
                         marginBottom: "20%",
-                        display: 'flex'
+                        display: 'flex',
+                        
                     }}
+                    resizeMode='contain'
                 />
             </View>
             <View style={{ width: "80%", marginBottom: 0, marginTop: 0, }}>
